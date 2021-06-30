@@ -10,6 +10,8 @@ const store = createStore(
   rootReducer,
   initialState,
   compose(
+    // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && // For dev Chrome extention for redux 
+    // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
     applyMiddleware(...middleware),
     (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()) ||

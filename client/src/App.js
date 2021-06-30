@@ -11,8 +11,8 @@ import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-// import PrivateRoute from "./components/private-route/PrivateRoute";
-// import Dashboard from "./components/dashboard/Dashboard";
+import CaesarOptions from "./components/caesar/option"
+import PrivateRoute from "./components/private-route/PrivateRoute";
 
 import "./App.css";
 
@@ -45,8 +45,10 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/caesar" component={CaesarOptions} />
+
             <Switch>
-              {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
+              {/* <PrivateRoute exact path="/" component={} /> */}
             </Switch>
           </div>
         </Router>

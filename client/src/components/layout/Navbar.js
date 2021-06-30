@@ -12,28 +12,20 @@ class Navbar extends Component {
   };
 
   render() {
-   
-      const { user } = this.props.auth;
-      if(user.name !== undefined){
-        return (
-          <div>
-            <div className="topnav">
-            <button className="navitem" style={{color: "#FF0000"}} onClick={this.onLogoutClick}>Log Out</button>
-            <p style={{color: "#FFFFFF"}}>{user.name}</p>
-            </div>
-          </div>
-        )
-      }else{
-          return(
-          <div>
-              <div className="topnav">
-              <Link to="/register" className="navitem">Signup</Link>
-              <Link to="/login" className="navitem">Log In</Link>
-              </div>
-          </div>
-          )
-        }
-      };
+    const { isAuthenticated, user } = this.props.auth;
+    return (
+      <div>
+        <div className="topnav">
+          {isAuthenticated ?
+            [<button className="navitem" style={{ color: "#FF0000" }} onClick={this.onLogoutClick}>Log Out</button> ,
+            <p style={{color: "#FFFFFF"}}>{user.name}</p>]
+            : [<Link to="/login" className="navitem">Log In</Link>,
+            <Link to="/register" className="navitem">Signup</Link>]}
+        </div>
+      </div>
+    )
+    
+  };
 }
 
 Navbar.propTypes = {
