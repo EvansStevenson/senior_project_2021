@@ -12,6 +12,13 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
+router.post("/caesarprogress", (req, res) => {
+console.log(req.body)
+User.updateOne({_id: req.body.userid}, {progress: req.body.payload}).then(user =>{ 
+    console.log(user)
+  })
+})
+
 // @route POST api/users/register
 // @desc Register user
 // @access Public
@@ -80,7 +87,8 @@ router.post("/login", (req, res) => {
         // Create JWT Payload
         const payload = {
           id: user.id,
-          name: user.name
+          name: user.name,
+          progress: user.progress //testing progress 
         };
 
         // Sign token

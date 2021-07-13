@@ -18,6 +18,16 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  progress: {
+    type: Object,
+    default: {
+      caesar: [false, false, false, false], 
+      playfair: [false, false, false, false], 
+      columnar: [false, false, false, false], 
+      railfence: [false, false, false, false ], 
+      vigenere: [false, false, false, false], 
+      foursquare: [false, false, false, false]}
   }
 });
 

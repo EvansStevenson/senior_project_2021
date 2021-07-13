@@ -10,11 +10,11 @@ class Landing extends Component {
         <h1>Cipher Exploration</h1> 
         <div class='landingTiles'>
           <Link to="/caesar" className='tile'>Caesar</Link>
-          <div className='tile'>Playfair</div>
-          <div className='tile'>Columnar</div>
-          <div className='tile'>Rail Fence</div>
-         <div className='tile'>Vigenère</div>
-          <div className='tile'>Four-Square</div>
+          <Link to="/playfair" className='tile'>Playfair</Link>
+          <Link to="/columnar" className='tile'>Columnar</Link>
+          <Link to="/railfence" className='tile'>Rail Fence</Link>
+         <Link to="/vigenere" className='tile'>Vigenère</Link>
+          <Link to="/foursquare" className='tile'>Four-Square</Link>
         </div>
       </div>
     );

@@ -1,4 +1,5 @@
 // import { INCREMENT_CAESAR_KEY } from "./types";
+import axios from "axios";
 export const incrementKey = () => dispatch =>{
     dispatch({
         type: "INCREMENT_CAESAR_KEY"
@@ -8,6 +9,12 @@ export const incrementKey = () => dispatch =>{
 export const decrementKey = () => dispatch =>{
     dispatch({
         type: "DECREMENT_CAESAR_KEY"
+    })
+}
+
+export const resetKey = () => dispatch =>{
+    dispatch({
+        type: "RESET_KEY"
     })
 }
 
@@ -85,3 +92,42 @@ export const caesarToggle = (toggle) => dispatch =>{
         payload: toggle
     })
 }
+
+export const updateModAlphabet = (mod) => dispatch => {
+    let base = "abcdefghijklmnopqrstuvwxyz"
+    let modAlphabet = ""
+    for (let character in base){
+        modAlphabet += base[(Number(character) + mod) % 26]
+    }
+    dispatch({
+        type: "CAESAR_MOD_ALPHABET",
+        payload: modAlphabet
+    })
+}
+
+export const updateCaesarInput = (input) => dispatch => {
+    dispatch({
+        type: "UPDATE_CAESAR_INPUT",
+        payload: input
+    })
+}
+
+export const checkError = (answer, input, userId, id) => dispatch => {
+    let message = ""
+    if (answer === input){
+        message = "you are correct"
+        let progress = JSON.parse(localStorage.getItem("progress"));
+        progress.caesar[id] = true;
+        console.log(progress)
+        axios.post("/api/users/caesarprogress", {payload: progress, userid: userId});
+        localStorage.setItem("progress", JSON.stringify(progress));
+    }
+    else{
+        message = "That is incorrect. Try again!"
+    }
+    dispatch({
+        type: "CHECK_ERROR",
+        payload: message
+    })
+}
+

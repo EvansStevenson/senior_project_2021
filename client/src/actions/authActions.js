@@ -3,6 +3,7 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
+import { decrementKey } from "./caesarActions";
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -32,6 +33,7 @@ export const loginUser = userData => dispatch => {
       // Decode token to get user data
       const decoded = jwt_decode(token);
       // Set current user
+      localStorage.setItem("progress", JSON.stringify(decoded.progress))
       dispatch(setCurrentUser(decoded));
     })
     .catch(err =>
@@ -65,4 +67,6 @@ export const logoutUser = () => dispatch => {
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
+  //delete local storage
+  localStorage.removeItem("progress");
 };

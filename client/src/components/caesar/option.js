@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { incrementKey, decrementKey, updateCaesarCiphertext, updateCaesarPlaintext, setDefaultText, caesarToggle} from "../../actions/caesarActions";
-
-
-// import { Link , withRouter} from "react-router-dom";
-// import PropTypes from "prop-types";
-// import { incrementKey } from "../../actions/caesarActions";
+import { incrementKey, decrementKey, updateCaesarCiphertext, updateCaesarPlaintext, setDefaultText, caesarToggle, resetKey } from "../../actions/caesarActions";
+import "../../componentCSS/caesarOptions.css"
+import { Link } from "react-router-dom";
 
 class CaesarOptions extends Component {
     constructor() {
@@ -19,46 +16,74 @@ class CaesarOptions extends Component {
     }
 
     increment() {
-        this.props.incrementKey();
-        if(this.props.caesarToggle){
-            this.props.updateCaesarCiphertext(this.props.caesarLogic.plaintext, this.props.caesarKey + 1);
-        }else{
-            this.props.updateCaesarPlaintext(this.props.caesarLogic.ciphertext, this.props.caesarKey + 1);
+        if (Number(this.props.caesarKey) < 26){
+            this.props.incrementKey();
+            if (this.props.caesarToggle) {
+                this.props.updateCaesarCiphertext(this.props.caesarLogic.plaintext, this.props.caesarKey + 1);
+            } else {
+                this.props.updateCaesarPlaintext(this.props.caesarLogic.ciphertext, this.props.caesarKey + 1);
+            }
         }
     }
 
     decrement() {
-        this.props.decrementKey();
-        if(this.props.caesarToggle){
-            this.props.updateCaesarCiphertext(this.props.caesarLogic.plaintext, this.props.caesarKey - 1);
-        }else{
-            this.props.updateCaesarPlaintext(this.props.caesarLogic.ciphertext, this.props.caesarKey - 1);
+        if (this.props.caesarKey > 0){
+            this.props.decrementKey();
+            if (this.props.caesarToggle) {
+                this.props.updateCaesarCiphertext(this.props.caesarLogic.plaintext, this.props.caesarKey - 1);
+            } else {
+                this.props.updateCaesarPlaintext(this.props.caesarLogic.ciphertext, this.props.caesarKey - 1);
+            }
         }
     }
 
     plainText = e => {
-       this.props.updateCaesarCiphertext(e.target.value.toLowerCase(), this.props.caesarKey);
+        this.props.updateCaesarCiphertext(e.target.value.toLowerCase(), this.props.caesarKey);
     }
 
-    cipherText = e =>{
+    cipherText = e => {
         this.props.updateCaesarPlaintext(e.target.value.toLowerCase(), this.props.caesarKey);
     }
 
-    changeFunction(){   
+    changeFunction() {
         this.props.toggle(this.props.caesarToggle)
         this.props.setDefaultText()
+        this.props.resetKey()
     }
 
     render() {
         return (
             <div>
-                Caesar options <br />
-                <p><button onClick={this.decrement}>-</button>{this.props.caesarKey}<button onClick={this.increment}>+</button> 
-                <button onClick={this.changeFunction}>{this.props.caesarToggle ? "Encode" : "Decode"}</button><br/></p>
-                Input {this.props.caesarToggle ? "Plaintext" : "Ciphertext"}:
-                <input onChange={this.props.caesarLogic.active ? this.plainText : this.cipherText} />
-                {this.props.caesarToggle ? this.props.caesarLogic.ciphertext : ""}
-                {this.props.caesarToggle ? "" : this.props.caesarLogic.plaintext}
+               
+
+                <div className="column" style = {{borderRight: "solid black 5px"}}>
+                    <h1>Caesar Cipher options</h1>  <Link to="/">Back To all Ciphers</Link>
+                    <h3>About the cipher</h3>
+                    <p>The Caesar cipher is one of the earliest known and simplest ciphers. It is a type of substitution cipher in which each letter in the plaintext is 'shifted' a certain number of places down the alphabet. For example, with a shift of 1, A would be replaced by B, B would become C, and so on. The method is named after Julius Caesar, who apparently used it to communicate with his generals.</p>
+                    <h3>How to use</h3>
+                    <p>To pass an encrypted message from one person to another, it is first necessary that both parties have the 'key' for the cipher, so that the sender may encrypt it and the receiver may decrypt it. For the caesar cipher, the key is the number of characters to shift the cipher alphabet.
+
+                        Here is a quick example of the encryption and decryption steps involved with the caesar cipher. The text we will encrypt is 'defend the east wall of the castle', with a shift (key) of 1.<br/><br/>
+
+                        plaintext:  defend the east wall of the castle <br/>
+                        ciphertext: efgfoe uif fbtu xbmm pg uif dbtumf <br/><br/>
+                        It is easy to see how each character in the plaintext is shifted up the alphabet. Decryption is just as easy, by using an offset of -1. <br/><br/>
+
+                        plain:  abcdefghijklmnopqrstuvwxyz<br/>
+                        cipher: bcdefghijklmnopqrstuvwxyza<br/><br/>
+                        Obviously, if a different key is used, the cipher alphabet will be shifted a different amount.</p>
+                    <Link to="/caesar/test"><button onClick={this.props.resetKey}>Test yourself!</button></Link>
+                </div>
+                <div className="column">
+                    <h1>Example of Cipher</h1>
+                    <h3>Key</h3>
+                    <p><button onClick={this.decrement}>-</button>{this.props.caesarKey}<button onClick={this.increment}>+</button>
+                        <button onClick={this.changeFunction}>{this.props.caesarToggle ? "Encode" : "Decode"}</button><br /></p>
+                    <h3>Input {this.props.caesarToggle ? "Plaintext" : "Ciphertext"}:
+                    <input onChange={this.props.caesarLogic.active ? this.plainText : this.cipherText} /></h3>
+                    {this.props.caesarToggle ? this.props.caesarLogic.ciphertext : ""}
+                    {this.props.caesarToggle ? "" : this.props.caesarLogic.plaintext}
+                </div>
 
             </div>
         )
@@ -75,12 +100,14 @@ function mapStateToProps(state) {
 
 function matchDispatchToProps(dispatch) {
     return bindActionCreators(
-        { incrementKey: incrementKey,
-        decrementKey: decrementKey,
-        updateCaesarCiphertext: updateCaesarCiphertext,
-        updateCaesarPlaintext: updateCaesarPlaintext,
-        toggle: caesarToggle,
-        setDefaultText: setDefaultText
+        {
+            incrementKey: incrementKey,
+            decrementKey: decrementKey,
+            resetKey: resetKey,
+            updateCaesarCiphertext: updateCaesarCiphertext,
+            updateCaesarPlaintext: updateCaesarPlaintext,
+            toggle: caesarToggle,
+            setDefaultText: setDefaultText
         }, dispatch)
 }
 

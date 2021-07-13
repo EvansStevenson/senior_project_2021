@@ -5,7 +5,9 @@ export default function(state = 0, action) {
       case "INCREMENT_CAESAR_KEY":
         return state + 1;
       case "DECREMENT_CAESAR_KEY":
-        return state - 1
+        return state - 1;
+      case "RESET_KEY":
+        return state = 0;
       default:
         return state;
     }

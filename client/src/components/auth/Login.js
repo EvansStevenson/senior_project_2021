@@ -54,51 +54,48 @@ class Login extends Component {
 
     return (
       <div className="container">
-            <Link to="/" className="btn-flat waves-effect">
-              Back to home
-            </Link>
-              <h4>
-                <b>Login</b> below
-              </h4>
-              <p className="grey-text text-darken-1">
-                Don't have an account? <Link to="/register">Register</Link>
-              </p>
-            <form noValidate onSubmit={this.onSubmit}>
-              <label >Email</label>
-                <input
-                  onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email"
-                  className={classnames("", {
-                    invalid: errors.email || errors.emailnotfound
-                  })}
-                />
-                <span>
-                  {errors.email}
-                  {errors.emailnotfound}
-                </span>
+        <h4>
+          <b>Login</b> below
+        </h4>
+        <p className="grey-text text-darken-1">
+          Don't have an account? <Link to="/register">Register</Link>
+        </p>
+        <form noValidate onSubmit={this.onSubmit}>
+          <label >Email</label>
+          <input
+            onChange={this.onChange}
+            value={this.state.email}
+            error={errors.email}
+            id="email"
+            type="email"
+            className={classnames("", {
+              invalid: errors.email || errors.emailnotfound
+            })}
+          />
+          <span>
+            {errors.email}
+            {errors.emailnotfound}
+          </span>
 
-              <label>Password</label>
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                  className={classnames("", {
-                    invalid: errors.password || errors.passwordincorrect
-                  })}
-                />
-               
-                <span>
-                  {errors.password}
-                  {errors.passwordincorrect}
-                </span>
-                <br></br>
-                <button type="submit" className="">Login</button>
-            </form>
+          <label>Password</label>
+          <input
+            onChange={this.onChange}
+            value={this.state.password}
+            error={errors.password}
+            id="password"
+            type="password"
+            className={classnames("", {
+              invalid: errors.password || errors.passwordincorrect
+            })}
+          />
+
+          <span>
+            {errors.password}
+            {errors.passwordincorrect}
+          </span>
+          <br></br>
+          <button type="submit" className="">Login</button>
+        </form>
       </div>
     );
   }

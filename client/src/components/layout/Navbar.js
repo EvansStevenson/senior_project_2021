@@ -16,9 +16,9 @@ class Navbar extends Component {
     return (
       <div>
         <div className="topnav">
-          {isAuthenticated ?
+            {isAuthenticated ?
             [<button className="navitem" style={{ color: "#FF0000" }} onClick={this.onLogoutClick}>Log Out</button> ,
-            <p style={{color: "#FFFFFF"}}>{user.name}</p>]
+            <Link to="/"><p style={{color: "#FFFFFF"}}>{user.name}</p></Link>]
             : [<Link to="/login" className="navitem">Log In</Link>,
             <Link to="/register" className="navitem">Signup</Link>]}
         </div>
