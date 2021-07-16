@@ -46,7 +46,6 @@ class CaesarTest extends Component{
     }
 
     render(){
-        const { isAuthenticated, user } = this.props.auth;
         let alphabet = []
         let characters = "abcdefghijklmnopqrstuvwxyz";
         for (let character of characters){
@@ -62,7 +61,7 @@ class CaesarTest extends Component{
                 <h1>Caesar Testing</h1> <br/><br/>
                 <Link to="/caesar">Go back</Link><br/><br/>
                 {alphabet}<br/><br/><br/>
-                {modAlphabet}
+                {modAlphabet}<br/><br/>
                 <p><button onClick={this.decrement}>-</button>{this.props.caesarKey}<button onClick={this.increment}>+</button></p>
                 <br/><br/>
                 <h3>Tests</h3>

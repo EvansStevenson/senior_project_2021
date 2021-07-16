@@ -12,7 +12,7 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 
-router.post("/caesarprogress", (req, res) => {
+router.post("/updateprogress", (req, res) => {
 console.log(req.body)
 User.updateOne({_id: req.body.userid}, {progress: req.body.payload}).then(user =>{ 
     console.log(user)

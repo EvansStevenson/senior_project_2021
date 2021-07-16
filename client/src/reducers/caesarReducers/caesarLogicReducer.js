@@ -1,5 +1,3 @@
-// import { INCREMENT_CAESAR_KEY } from "../actions/types";
-
 const initialState = {
     plaintext: "",
     ciphertext: "",

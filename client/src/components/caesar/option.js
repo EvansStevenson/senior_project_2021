@@ -76,11 +76,11 @@ class CaesarOptions extends Component {
                 </div>
                 <div className="column">
                     <h1>Example of Cipher</h1>
-                    <h3>Key</h3>
-                    <p><button onClick={this.decrement}>-</button>{this.props.caesarKey}<button onClick={this.increment}>+</button>
-                        <button onClick={this.changeFunction}>{this.props.caesarToggle ? "Encode" : "Decode"}</button><br /></p>
+                    <button onClick={this.changeFunction}>{this.props.caesarToggle ? "Encode" : "Decode"}</button>
                     <h3>Input {this.props.caesarToggle ? "Plaintext" : "Ciphertext"}:
                     <input onChange={this.props.caesarLogic.active ? this.plainText : this.cipherText} /></h3>
+                    <h3>Key</h3>
+                    <p><button onClick={this.decrement}>-</button>{this.props.caesarKey}<button onClick={this.increment}>+</button><br/></p>
                     {this.props.caesarToggle ? this.props.caesarLogic.ciphertext : ""}
                     {this.props.caesarToggle ? "" : this.props.caesarLogic.plaintext}
                 </div>

@@ -8,16 +8,24 @@ import caesarToggle from "./caesarReducers/caesarToggleReducer";
 import caesarTest from "./caesarReducers/caesarTestReducer";
 import caesarTestInput from "./caesarReducers/caesarTestInputReducer";
 import checkError from "./caesarReducers/caesarErrorReducer"
+import playfairExampleText from "./playfairReducers/playfairExampleText"
+import playfairTestInput from "./playfairReducers/updateTestInput"
+import playfairCheck from "./playfairReducers/playfairCheck"
 
 
 export default combineReducers({
   auth: authReducer,
   errors: errorReducer,
   updateProgress: updateProgress,
+  // caesar 
   caesarKey: caesarKeyReducer,
   caesarLogic: caesarLogic,
   caesarToggle: caesarToggle,
   caesarTest: caesarTest,
   caesarTestInput: caesarTestInput,
-  checkError: checkError
+  checkError: checkError,
+  // playfair 
+  playfairExampleText: playfairExampleText,
+  playfairTestInput: playfairTestInput,
+  playfairCheck: playfairCheck
 });

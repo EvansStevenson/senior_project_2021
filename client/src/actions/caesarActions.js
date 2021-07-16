@@ -1,4 +1,3 @@
-// import { INCREMENT_CAESAR_KEY } from "./types";
 import axios from "axios";
 export const incrementKey = () => dispatch =>{
     dispatch({
@@ -119,7 +118,7 @@ export const checkError = (answer, input, userId, id) => dispatch => {
         let progress = JSON.parse(localStorage.getItem("progress"));
         progress.caesar[id] = true;
         console.log(progress)
-        axios.post("/api/users/caesarprogress", {payload: progress, userid: userId});
+        axios.post("/api/users/updateprogress", {payload: progress, userid: userId});
         localStorage.setItem("progress", JSON.stringify(progress));
     }
     else{
