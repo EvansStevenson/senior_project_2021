@@ -6,37 +6,37 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case "UPDATE_PLAYFAIR_KEY":
+        case "UPDATE_VIGENERE_KEY":
             return {
                 key: action.payload.key,
                 plaintext: action.payload.plaintext,
                 ciphertext: action.payload.ciphertext,
             }
-        case "UPDATE_PLAYFAIR_CIPHERTEXT":
+        case "UPDATE_VIGENERE_CIPHERTEXT":
             return {
                 key: action.payload.key,
                 plaintext: action.payload.plaintext,
                 ciphertext: action.payload.ciphertext,
             }
-        case "UPDATE_PLAYFAIR_PLAINTEXT":
+        case "UPDATE_VIGENERE_PLAINTEXT":
             return {
                 key: action.payload.key,
                 plaintext: action.payload.plaintext,
                 ciphertext: action.payload.ciphertext,
             }
-        case "ENCRYPT_PLAYFAIR":
+        case "ENCRYPT_VIGENERE":
             return {
                 key: action.payload.key,
                 plaintext: action.payload.plaintext,
                 ciphertext: action.payload.ciphertext,
             }
-        case "DECRYPT_PLAYFAIR":
+        case "DECRYPT_VIGENERE":
             return{
                 key: action.payload.key,
                 plaintext: action.payload.plaintext,
                 ciphertext: action.payload.ciphertext,
             }
-        case "DEFAULT_PLAYFAIR_TEXT":
+        case "DEFAULT_VIGENERE_TEXT":
             return {
                 key: "",
                 plaintext: "",

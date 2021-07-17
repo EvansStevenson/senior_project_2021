@@ -7,10 +7,13 @@ import caesarLogic from "./caesarReducers/caesarLogicReducer";
 import caesarToggle from "./caesarReducers/caesarToggleReducer";
 import caesarTest from "./caesarReducers/caesarTestReducer";
 import caesarTestInput from "./caesarReducers/caesarTestInputReducer";
-import checkError from "./caesarReducers/caesarErrorReducer"
-import playfairExampleText from "./playfairReducers/playfairExampleText"
-import playfairTestInput from "./playfairReducers/updateTestInput"
-import playfairCheck from "./playfairReducers/playfairCheck"
+import checkError from "./caesarReducers/caesarErrorReducer";
+import playfairExampleText from "./playfairReducers/playfairExampleText";
+import playfairTestInput from "./playfairReducers/updateTestInput";
+import playfairCheck from "./playfairReducers/playfairCheck";
+import vigenereExampleText from "./vigenereReducers/vigenereExampleText";
+import vigenereTestInput from "./vigenereReducers/updateTestInput";
+import vigenereCheck from "./vigenereReducers/vigenereCheck";
 
 
 export default combineReducers({
@@ -27,5 +30,9 @@ export default combineReducers({
   // playfair 
   playfairExampleText: playfairExampleText,
   playfairTestInput: playfairTestInput,
-  playfairCheck: playfairCheck
+  playfairCheck: playfairCheck,
+  //vigenere
+  vigenereExampleText: vigenereExampleText,
+  vigenereTestInput: vigenereTestInput,
+  vigenereCheck: vigenereCheck
 });

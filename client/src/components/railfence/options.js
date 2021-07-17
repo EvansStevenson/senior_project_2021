@@ -8,7 +8,31 @@ import { Link } from "react-router-dom";
 class CaesarOptions extends Component {
     constructor() {
         super();
-        // this.decrement = this.decrement.bind(this)
+        this.key = this.key.bind(this);
+        this.plaintext = this.plaintext.bind(this);
+        this.encrypt = this.encrypt.bind(this);
+        this.ciphertext = this.ciphertext.bind(this);
+        this.decrypt = this.decrypt.bind(this);
+    }
+
+    key = e => {
+        this.props.updateKey(e.target.value.toLowerCase(), this.props.railfenceExampleText)
+    }
+
+    plaintext = e => {
+        this.props.updatePlaintext(e.target.value.toLowerCase(), this.props.railfenceExampleText)
+    }
+
+    ciphertext(){
+
+    }
+
+    encrypt(){
+
+    }
+
+    decrypt(){
+
     }
 
     render() {
@@ -25,6 +49,15 @@ class CaesarOptions extends Component {
                 <div className="column">
                     <h1>Example of Cipher</h1>
                     <h3>Key</h3>
+                    Input cipher key: <input onChange={this.key}></input><br/>
+                    Plain text: <input id="plaintextInput" onChange={this.plainText}></input><button onClick={() => {
+                        this.encrypt(); 
+                        document.getElementById("cipherInput").value = this.props.railfenceExampleText.ciphertext;
+                    }}>Encrypt</button><br/>
+                    Cipher text: <input id="cipherInput" onChange={this.cipherText}></input><button onClick={() => {
+                        this.decrypt();
+                        document.getElementById("plaintextInput").value = this.props.railfenceExampleText.plaintext;
+                    }}>Decrypt</button>
                 </div>
             </div>
         )

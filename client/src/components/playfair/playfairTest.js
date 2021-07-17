@@ -94,9 +94,9 @@ class PlayfairTest extends Component{
 
                 {this.state.test3 ? <div>
                     <h3>Decode 1</h3>
-                    <p>Decode this message "ZPULRXBTAZPURAMPHKAZ" using the playfair cipher with a <span style={{color: "green"}}>key of "roadtrip"</span></p>
+                    <p>Decode this message "BQINLXYVIEQNWDSECW" using the playfair cipher with a <span style={{color: "green"}}>key of "nightwalker"</span></p>
                     <input onChange={this.updateTestInput}></input><button onClick={()=>{
-                        this.checkEncode("WELEAVEATXENTONIGHTX", 2);
+                        this.checkEncode("DONTGOXUTAFTERDARK", 2);
                     }}>Submit your answer</button>
                     <p>{this.props.playfairCheck}</p>
                 </div> : ""}
