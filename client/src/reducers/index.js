@@ -14,6 +14,9 @@ import playfairCheck from "./playfairReducers/playfairCheck";
 import vigenereExampleText from "./vigenereReducers/vigenereExampleText";
 import vigenereTestInput from "./vigenereReducers/updateTestInput";
 import vigenereCheck from "./vigenereReducers/vigenereCheck";
+import columnarExampleText from "./columnarReducers/columnarExampleText";
+import columnarTestInput from "./columnarReducers/updateTestInput";
+import columnarCheck from "./columnarReducers/columnarCheck";
 
 
 export default combineReducers({
@@ -34,5 +37,9 @@ export default combineReducers({
   //vigenere
   vigenereExampleText: vigenereExampleText,
   vigenereTestInput: vigenereTestInput,
-  vigenereCheck: vigenereCheck
+  vigenereCheck: vigenereCheck,
+  //columnar
+  columnarExampleText: columnarExampleText,
+  columnarTestInput: columnarTestInput,
+  columnarCheck: columnarCheck
 });

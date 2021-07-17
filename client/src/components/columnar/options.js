@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { } from "../../actions/columnarActions";
+import { updateKey, updatePlaintext, updateCiphertext, encryptPlaintext, decryptCiphertext} from "../../actions/columnarActions";
 import "../../componentCSS/caesarOptions.css"
 import { Link } from "react-router-dom";
 
@@ -23,16 +23,16 @@ class CaesarOptions extends Component {
         this.props.updatePlaintext(e.target.value.toLowerCase(), this.props.columnarExampleText)
     }
 
-    ciphertext(){
-
+    ciphertext = e => {
+        this.props.updateCiphertext(e.target.value.toLowerCase(), this.props.columnarExampleText)
     }
 
     encrypt(){
-
+        this.props.encryptPlaintext(this.props.columnarExampleText)
     }
 
     decrypt(){
-
+        this.props.decryptCiphertext(this.props.columnarExampleText)
     }
 
     render() {
@@ -50,11 +50,11 @@ class CaesarOptions extends Component {
                     <h1>Example of Cipher</h1>
                     <h3>Key</h3>
                     Input cipher key: <input onChange={this.key}></input><br/>
-                    Plain text: <input id="plaintextInput" onChange={this.plainText}></input><button onClick={() => {
+                    Plain text: <input id="plaintextInput" onChange={this.plaintext}></input><button onClick={() => {
                         this.encrypt(); 
                         document.getElementById("cipherInput").value = this.props.columnarExampleText.ciphertext;
                     }}>Encrypt</button><br/>
-                    Cipher text: <input id="cipherInput" onChange={this.cipherText}></input><button onClick={() => {
+                    Cipher text: <input id="cipherInput" onChange={this.ciphertext}></input><button onClick={() => {
                         this.decrypt();
                         document.getElementById("plaintextInput").value = this.props.columnarExampleText.plaintext;
                     }}>Decrypt</button>
@@ -66,12 +66,18 @@ class CaesarOptions extends Component {
 
 function mapStateToProps(state) {
     return {
+        columnarExampleText: state.columnarExampleText
     }
 }
 
 function matchDispatchToProps(dispatch) {
     return bindActionCreators(
-        {}, dispatch)
+        {updateKey: updateKey,
+        updatePlaintext: updatePlaintext,
+        updateCiphertext: updateCiphertext,
+        encryptPlaintext: encryptPlaintext, 
+        decryptCiphertext: decryptCiphertext},
+        dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(CaesarOptions);
